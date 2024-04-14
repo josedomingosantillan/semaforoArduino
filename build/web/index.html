@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control del Semáforo</title>
+    <script>
+        function enviarEstado(estado) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log("Estado enviado: " + estado);
+                }
+            };
+            xmlhttp.open("GET", "SemaforoServlet?estado=" + estado, true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Control del Semáforo</h2>
+    <button onclick="enviarEstado('r')">LED Rojo</button>
+    <button onclick="enviarEstado('a')">LED Amarillo</button>
+    <button onclick="enviarEstado('v')">LED Verde</button>
+</body>
+</html>
